@@ -1,0 +1,11 @@
+server:
+  port: 1112
+
+eureka:
+  instance:
+    hostname: two
+  client:
+    serviceUrl:
+      defaultZone: http://two:1111/eureka/
+    register-with-eureka: true
+    fetch-registry: true

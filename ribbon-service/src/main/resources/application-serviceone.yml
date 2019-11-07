@@ -1,0 +1,7 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://one:1111/eureka/,http://two:1112/eureka/
