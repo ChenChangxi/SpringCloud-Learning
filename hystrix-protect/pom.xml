@@ -9,11 +9,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ccx</groupId>
-    <artifactId>ribbon-service</artifactId>
+    <artifactId>hystrix-protect</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ribbon-service</name>
-    <description>这个微服务是服务的提供与消费</description>
-
+    <name>hystrix-protect</name>
+    <description>
+        这个微服务是断路器与容错机制，专门为了解决服务出错以及
+        如何处理出错服务与其他服务之间的依赖关系
+    </description>
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Brixton.SR5</spring-cloud.version>
@@ -21,17 +23,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-ribbon</artifactId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -44,6 +39,7 @@
             </exclusions>
         </dependency>
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

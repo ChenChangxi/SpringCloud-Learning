@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: zuul-balance
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://one:1111/eureka,http://two:1112/eureka
+
+server:
+  port: 8010
