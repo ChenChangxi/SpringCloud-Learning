@@ -27,10 +27,35 @@ public class TestController {
     @Autowired
     private DiscoveryClient client;
 
-    @RequestMapping(value = "/test")
-    public String test() {
+    @RequestMapping(value = "/test1")
+    public String test1() {
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
-        return "Hello World";
+        return "Hello World1";
+    }
+
+    @RequestMapping(value = "/test2")
+    public String test2() {
+        ServiceInstance instance=client.getLocalServiceInstance();
+        logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
+        return "Hello World2";
+    }
+    @RequestMapping(value = "/test3")
+    public String test3() {
+        ServiceInstance instance=client.getLocalServiceInstance();
+        logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
+        return "Hello World3";
+    }
+    @RequestMapping(value = "/test4")
+    public String test4() {
+        ServiceInstance instance=client.getLocalServiceInstance();
+        logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
+        return "Hello World4";
+    }
+    @RequestMapping(value = "/test5")
+    public String test5() {
+        ServiceInstance instance=client.getLocalServiceInstance();
+        logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
+        return "Hello World5";
     }
 }

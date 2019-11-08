@@ -9,3 +9,16 @@ eureka:
 
 server:
   port: 8010
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+  threadpool:
+    pool1:
+      coreSize: 1
+    pool2:
+      coreSize: 1

@@ -1,5 +1,6 @@
 package com.ccx.zuulbalance.usercontroller;
 
+import com.ccx.zuulbalance.userservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 public class UserController {
 
     @Autowired
-    private RestTemplate restTemplate;
+    private UserService userService;
 
     /**
     *@Description: 这是用户调用的接口
@@ -26,8 +27,24 @@ public class UserController {
     *@Author: ChenChangxi
     *@date: 2019-11-07
     */
-    @RequestMapping(value = "/user")
-    public String user() {
-        return restTemplate.getForEntity("http://RIBBON-SERVICE/test",String.class).getBody();
+    @RequestMapping(value = "/user1")
+    public String user1() {
+        return userService.getString1();
+    }
+    @RequestMapping(value = "/user2")
+    public String user2() {
+        return userService.getString2();
+    }
+    @RequestMapping(value = "/user3")
+    public String user3() {
+        return userService.getString3();
+    }
+    @RequestMapping(value = "/user4")
+    public String user4() {
+        return userService.getString4();
+    }
+    @RequestMapping(value = "/user5")
+    public String user5() {
+        return userService.getString5();
     }
 }
