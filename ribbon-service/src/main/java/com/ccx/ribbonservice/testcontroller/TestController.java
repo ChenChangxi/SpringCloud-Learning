@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -27,35 +28,35 @@ public class TestController {
     @Autowired
     private DiscoveryClient client;
 
-    @RequestMapping(value = "/test1")
-    public String test1() {
+    @RequestMapping(value = "/test1/{test}")
+    public String test1(@PathVariable("test") String test) {
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
-        return "Hello World1";
+        return test;
     }
 
-    @RequestMapping(value = "/test2")
-    public String test2() {
+    @RequestMapping(value = "/test2/{test}")
+    public String test2(@PathVariable("test") String test) {
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
-        return "Hello World2";
+        return test;
     }
-    @RequestMapping(value = "/test3")
-    public String test3() {
+    @RequestMapping(value = "/test3/{test}")
+    public String test3(@PathVariable("test") String test) {
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
-        return "Hello World3";
+        return test;
     }
-    @RequestMapping(value = "/test4")
-    public String test4() {
+    @RequestMapping(value = "/test4/{test}")
+    public String test4(@PathVariable("test") String test) {
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
-        return "Hello World4";
+        return test;
     }
-    @RequestMapping(value = "/test5")
-    public String test5() {
+    @RequestMapping(value = "/test5/{test}")
+    public String test5(@PathVariable("test") String test) {
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
-        return "Hello World5";
+        return test;
     }
 }

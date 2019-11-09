@@ -19,6 +19,6 @@ hystrix:
             timeoutInMilliseconds: 20000
   threadpool:
     pool1:
-      coreSize: 1
+      coreSize: 5
     pool2:
-      coreSize: 1
+      coreSize: 5
