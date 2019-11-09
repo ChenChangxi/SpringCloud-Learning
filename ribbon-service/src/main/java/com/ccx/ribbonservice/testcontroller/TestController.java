@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.websocket.server.PathParam;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @program: com.ccx.ribbonservice.testcontroller
  * @description: 注册两个微服务，实现客户端的负载均衡
@@ -36,10 +40,14 @@ public class TestController {
     }
 
     @RequestMapping(value = "/test2/{test}")
-    public String test2(@PathVariable("test") String test) {
+    public List<String> test2(@PathVariable("test") String test) {
+        List<String> results= new ArrayList<String>();
+        for(String result:test.split(",")) {
+            results.add(result);
+        }
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
-        return test;
+        return results;
     }
     @RequestMapping(value = "/test3/{test}")
     public String test3(@PathVariable("test") String test) {
