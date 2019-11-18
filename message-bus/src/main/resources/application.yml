@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: rabbit-mq
+  rabbitmq:
+    host: localhost
+    # 注意，5762是client登陆端口，15762是管理端口
+    port: 5672
+    username: ccx1016875161@126.com
+    password: QTSS.a000

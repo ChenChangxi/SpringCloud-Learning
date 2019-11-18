@@ -32,14 +32,14 @@ public class TestController {
     @Autowired
     private DiscoveryClient client;
 
-    @RequestMapping(value = "/test1/{test}")
+    @RequestMapping(value = "/api/test1/{test}")
     public String test1(@PathVariable("test") String test) {
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
         return test;
     }
 
-    @RequestMapping(value = "/test2/{test}")
+    @RequestMapping(value = "/api/test2/{test}")
     public List<String> test2(@PathVariable("test") String test) {
         List<String> results= new ArrayList<String>();
         for(String result:test.split(",")) {
@@ -49,19 +49,19 @@ public class TestController {
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
         return results;
     }
-    @RequestMapping(value = "/test3/{test}")
+    @RequestMapping(value = "/api/test3/{test}")
     public String test3(@PathVariable("test") String test) {
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
         return test;
     }
-    @RequestMapping(value = "/test4/{test}")
+    @RequestMapping(value = "/api/test4/{test}")
     public String test4(@PathVariable("test") String test) {
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());
         return test;
     }
-    @RequestMapping(value = "/test5/{test}")
+    @RequestMapping(value = "/api/test5/{test}")
     public String test5(@PathVariable("test") String test) {
         ServiceInstance instance=client.getLocalServiceInstance();
         logger.info("/test,host:"+instance.getHost()+",service_id"+instance.getPort());

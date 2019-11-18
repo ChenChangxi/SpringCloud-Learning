@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: config-server
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: ccx1016875161@126.com
+    password: QTSS.a000
+
+  cloud:
+    config:
+      server:
+
+        git:
+          username: ccx1016875161@126.com
+          password: QTSS.a000
+
+          # 这里是用application-name来匹配仓库，不过功能不够强大
+          # uri: https://github.com/ChenChangxi/{application}
+          # 在哪个仓库下面的哪个文件路径中找配置文件
+          search-paths: /service
+
+          # 这是默认的仓库
+          uri: https://github.com/ChenChangxi/Tensorflow
+          repos:
+            ribbon:
+              pattern: ribbon*/*
+              uri: https://github.com/ChenChangxi/ribbon
+              search-paths: /service
+
+            hystrix:
+              pattern: hystrix*/*
+              uri: https://github.com/ChenChangxi/hystrix
+              search-paths: /service
+
+            zuul:
+              pattern: zuul*/*
+              uri: https://github.com/ChenChangxi/zuul
+              search-paths: /service
+
+server:
+  port: 7000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://one:1111/eureka/,http://two:1112/eureka/

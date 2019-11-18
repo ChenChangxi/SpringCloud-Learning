@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ribbon-service
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: ccx1016875161@126.com
+    password: QTSS.a000
+
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      label: master
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://one:1111/eureka/,http://two:1112/eureka/

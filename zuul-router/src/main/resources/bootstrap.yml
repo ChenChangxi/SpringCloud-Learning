@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: zuul-router
+
+  rabbitmq:
+    host: localhost
+    port: 5555
+    username: root
+    password: QTSS.a000
+
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+
+# 当用正则表达式来自定义路由的时候，这个必须配置，用它来到
+# 服务注册中心去发现服务，用这些服务去匹配正则表达式，匹配
+# 成功的时候就会利用路径正则表达式为这些服务生成路由。
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://one:1111/eureka/,http://two:1112/eureka/
