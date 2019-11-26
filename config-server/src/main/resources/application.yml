@@ -2,12 +2,20 @@ spring:
   application:
     name: config-server
 
+  # 利用消息总线来更新配置文件，向config-server发送/bus/refresh
+  # 请求（注意，一定是post请求），config-server就会把消息发送到消
+  # 息总线上，各个client接收到消息时就能够向config-server请求配置
+  # 文件，进而向远端git仓库中请求配置文件，这个过程中项目不会重启。
   rabbitmq:
     host: localhost
     port: 5672
     username: ccx1016875161@126.com
     password: QTSS.a000
 
+  # 实现git push就能实时更新本地项目配置文件的功能需要用到webhooks技术
+  # 它相当是数据库中的trigger，一旦有push就会向你的电脑发送post请求，这
+  # 个需要在github当中配置。这其中有个非常难解决的技术难题，那就是你的电脑
+  # 永远只有内网ip，没有公网ip，需要用内网穿透技术（具体请自查）。
   cloud:
     config:
       server:

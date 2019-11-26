@@ -7,3 +7,24 @@ spring:
     port: 5672
     username: ccx1016875161@126.com
     password: QTSS.a000
+
+  cloud:
+    stream:
+      bindings:
+        input2:
+          #所有设置了这个属性的实例都是消费组中的一个实例。我们发送
+          #的消息会被所有destination相同的input通道所接收，那么设
+          #置消费组的目的就是我们想要消息每次只被一个消息通道所接收，
+          #而不是所有消息通道都接收。那么这些通道默认的策略是轮询接收。
+          group: service
+          destination: test
+          consumer:
+            #开启消息分区的功能
+            partitioned: true
+      #有多少消费者实例
+      instance-count: 2
+      #消费者实例的索引
+      instance-index: 0
+
+server:
+  port: 2341

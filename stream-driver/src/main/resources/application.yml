@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: stream-driver
+  #rabbitmq消息中间件的一些配置
+  rabbitmq:
+    username: ccx1016875161@126.com
+    password: QTSS.a000
+    host: localhost
+    port: 5672
+  cloud:
+    stream:
+      bindings:
+        output1:
+          #当测试发送和接收JSON语句时，要在发送通道添加这个配置
+#          content-type: application/json
+          destination: test
+          producer:
+            #分区的实例有多少
+            partition-count: 2
+            #分区键，用来指定"怎么分区"，也就是按什么分区，payload就是
+            #我们发送的消息，这里是按照我们发送的消息（也就是User对象）
+            #的年龄来进行分区，年龄一样的发往同一个实例，我们通过实验也
+            #可以看到，年龄为奇数的都发往通道为input1的实例，年龄为偶数
+            #的都发往通道为input2的实例。
+            partition-key-expression: payload.age
+
+        #这里做了一个反向绑定，就是说我在两个应用中的配置文件中同时
+        #定义了两个相同的通道，这个通道在物理上是相同的，但是在逻辑
+        #上，第一个应用的input和第二个应用的output的destination
+        #必须相同，才能实现消息从input传送到output，第二个应用的
+        #output和input的destination必须相同，原因同上，而这两个
+        #destination不能够相同，因为假如相同的话，那么第二个应用就
+        #会出现output后立马又被自己所input，出现死循环。
+        input6:
+          destination: great1
+        output5:
+          destination: great
+
+        input:
+          destination: great1
+        output:
+          destination: great
+
