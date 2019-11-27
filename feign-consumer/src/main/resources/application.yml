@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: feign-consumer
+#  cloud:
+#    loadbalancer:
+#      retry:
+#        enabled: true
+
+server:
+  port: 4657
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://one:1111/eureka/,http://two:1112/eureka/
+
+#在执行具体调用命令的一些熔断配置，hystrix是针对两个微服务之间具体的调用
+#命令的，而不是针对两个微服务之间的。
+hystrix:
+  command:
+    #某个具体命令的配置，这个命令默认是采用方法名，如果有方法的重载，则几个重
+    #载的方法共享配置。
+    feign:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 100000
+
+#在调用ribbon-service服务的时候一些配置，ribbon是针对具体微服务的客户端
+#的，以下的所有配置都是针对于feign-consumer向ribbon-service发起调用时的
+#一些配置。
+ribbon-service:
+  ribbon:
+    #连接的最大时间
+    ConnectTimeout: 500
+    #一次请求的最大时间，超过这个时间就会重试，它不能超过hystrix的command
+    #熔断的时间，否则就会熔断服务，进行降级处理，而不会进行重试。
+    ReadTimeout: 3000
+    #是否允许重试不同的实例
+    OkToRetryOnAllOperations: false
+    #会尝试多少个实例进行重试，失败后返回（总共尝试实例=1+重试实例数）。
+    MaxAutoRetriesNextServer: 3
+    #在一个实例上重试多少次（总共尝试次数=1+重试次数）。
+    MaxAutoRetries: 2
+
+    eureka:
+      enabled: false
+
+
+
