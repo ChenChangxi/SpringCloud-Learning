@@ -1,12 +1,9 @@
 package com.ccx.ribbonservice.fegincontroller;
 
-import com.ccx.ribbonservice.entity.BaseController;
 import com.ccx.ribbonservice.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Random;
 
 /**
  * @program: com.ccx.ribbonservice.fegincontroller
@@ -25,18 +22,21 @@ public class FeignController implements BaseController {
 
     private Integer sleep=4000;
 
-    @Override
-    public String feign() throws Exception {
+    public void thread() throws Exception{
         Thread.sleep(sleep);
         logger.info("==========sleep:"+sleep+"s==========");
-        return "Hello Fegin!!";
+    }
+
+    @Override
+    public String feign() throws Exception {
+//        thread();
+        return "ribbon";
     }
 
     @Override
     public User feign(@RequestParam("name") String name,
                       @RequestParam("age") Integer age) throws Exception {
-        Thread.sleep(sleep);
-        logger.info("==========sleep:"+sleep+"s==========");
+//        thread();
         User user = new User();
         user.setName(name);
         user.setAge(age);
@@ -45,8 +45,7 @@ public class FeignController implements BaseController {
 
     @Override
     public String feign(@RequestBody User user) throws Exception {
-        Thread.sleep(sleep);
-        logger.info("==========sleep:"+sleep+"s==========");
-        return user.getAge()+" "+user.getName();
+//        thread();
+        return "ribbon-"+user.getAge()+"-"+user.getName();
     }
 }

@@ -19,7 +19,6 @@ spring:
   cloud:
     config:
       server:
-
         git:
           username: ccx1016875161@126.com
           password: QTSS.a000

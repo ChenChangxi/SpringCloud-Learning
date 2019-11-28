@@ -12,7 +12,12 @@
     <artifactId>stream-driver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>stream-driver</name>
-    <description>Demo project for Spring Boot</description>
+    <description>这是SpringCloud的消息驱动服务。所谓中间件，就是独立于
+    客户端和服务端的组件，它们通常起着"异步"的作用，比如消息队列就是典型的
+    中间件，我们把消息发给消息队列，接收者可以不用立即接收，于是就起到"异步"
+    的作用。它可以在整个微服务集群中负责各个微服务之间的异步消息传递，它屏蔽
+    了不同消息中间件的差异性，提出了"绑定器"与"消息通道"的概念。要注意它和消
+    息总线的区别，消息总线是专门用来更新配置文件的。</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -20,19 +25,26 @@
     </properties>
 
     <dependencies>
+
+        <!--Java的响应式编程-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream-rxjava</artifactId>
             <version>1.0.2.RELEASE</version>
         </dependency>
+
+        <!--strem中对rabbitmq提供的支持-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-rabbitmq</artifactId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
         </dependency>
+
+        <!--stream中的绑定器的依赖模块-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

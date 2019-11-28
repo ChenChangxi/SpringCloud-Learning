@@ -12,7 +12,13 @@
     <artifactId>ribbon-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ribbon-service</name>
-    <description>这个微服务是服务的提供与消费</description>
+    <description>这是SpringCloud的客户端负载均衡，它是整个微服务最
+    为核心的模块，所有的服务提供者。我们正是在这个模块中完成业务逻辑的
+    编写，以及通过它所提供的api与其他服务进行互相调用。它还提供了客户端
+    的负载均衡功能，这里要注意服务与实例的区别，以及客户端与服务端的区别
+    服务是在配置文件中所指定的应用名，一个服务对应着很多 实例，我们可以
+    通过命令行参数为他们指定不同的端口，负载均衡就是在一个服务的不同实例
+    之间进行的，而客户端是你发起调用的服务，服务端是被调用的服务</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -20,18 +26,26 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-rabbitmq</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
-        </dependency>
+
+        <!--web模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!--服务发现与治理模块-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+
+        <!--ribbon模块-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-ribbon</artifactId>
+        </dependency>
+
+        <!--消息总线模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -40,18 +54,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-ribbon</artifactId>
-        </dependency>
+
+        <!--分布式配置中心模块-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

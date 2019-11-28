@@ -12,38 +12,85 @@
     <artifactId>message-bus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>message-bus</name>
-    <description>Demo project for Spring Boot</description>
+    <description>这是SpringCloud的消息总线模块，它承担的是配置文件的更新
+    任务。当配置文件发生更新时，我们向分布式配置中心发送请求，分布式配置中心
+    将更新消息发送给消息中间件，各个微服务会在消息中间件中收到更新消息，从而
+    向分布式配置中心请求配置文件。</description>
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Brixton.SR5</spring-cloud.version>
     </properties>
     <dependencies>
+
+        <!--需要用到其他模块的一些依赖-->
+        <dependency>
+            <groupId>com.ccx</groupId>
+            <artifactId>ribbon-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ccx</groupId>
+            <artifactId>fegin-consumer</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>com.ccx</groupId>
             <artifactId>stream-driver</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <!--web模块-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--feign模块-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+
+        <!--Java的响应式编程模块-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream-rxjava</artifactId>
             <version>1.0.2.RELEASE</version>
         </dependency>
+
+        <!--在项目的控制台里实现链路追踪，无论是日志还是zipkin都要有这个-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-rabbitmq</artifactId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
+        <!--在项目中使用logback来进行链路追踪-->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>4.6</version>
+        </dependency>
+
+        <!--在项目中使用zipkin进行链路追踪，并使用http直接发送到zipkin服务端,
+        这里一定要注意，这个依赖不能与spring-cloud-sleuth-stream这个依赖同时
+        存在，否则要么消息输入不到中间件，要么启动的时候报错，也就是说要么你直接
+        把链路消息发给zipkin-server，要么发给rabbitmq消息中间件。-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-sleuth-zipkin</artifactId>-->
+        <!--</dependency>-->
+
+        <!--使用zipkin进行链路追踪，首先发送到rabbitmq中间件，然后服务端从消息
+        中间件来获取链路请求信息-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-stream</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

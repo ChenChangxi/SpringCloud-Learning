@@ -12,7 +12,9 @@
     <artifactId>eureka-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eureka-server</name>
-    <description>这是高可用分布式服务注册中心</description>
+    <description>这是SpringCloud的高可用分布式服务注册中心，是整个
+    微服务的核心模块，每一个微服务都注册在这里，当集群中的微服务向其他
+    微服务发起调用时，也是通过它来进行服务发现的</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -20,6 +22,8 @@
     </properties>
 
     <dependencies>
+
+        <!--引入eureka-server模块，使应用成为一个服务发现的中心-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka-server</artifactId>

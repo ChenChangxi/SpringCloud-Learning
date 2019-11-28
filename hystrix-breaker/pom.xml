@@ -12,7 +12,14 @@
     <artifactId>hystrix-breaker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>zuul-balance</name>
-    <description>Demo project for Spring Boot</description>
+    <description>这是SpringCloud的断路器，如果说Eureka承担的是分布式
+    任务，那么它承担着另一项在集群中非常重要的任务，就是处理亿级高并发请求。
+    一旦某一个服务器发生故障，或者请求超过了我们自己设置的熔断时间，它会
+    "熔断"服务并进行服务降级处理。它还会将请求分组，并为每个组设置一个线程
+    池，这样就形成了线程隔离。当面对大量相同请求时，它还会为这些请求设置缓存
+    功能，从而极大减轻服务器的负担，并能在数据一致性遭到破坏时，自动消除缓存
+    。它还能够进行请求合并，从而大量的减少线程消耗的数量。这些都是高并发情境下
+    我们为了"容错"和"减负"所采取的策略。</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -20,10 +27,26 @@
     </properties>
 
     <dependencies>
+
+        <!--web模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!--注册成为Eureka客户端-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+
+        <!--hystrix模块，导入hystrix依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
+
+        <!--消息总线的依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -32,18 +55,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-hystrix</artifactId>
-        </dependency>
+
+        <!--分布式配置中心的依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

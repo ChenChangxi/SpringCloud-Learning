@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * @program: com.ccx.ribbonservice.testcontroller
- * @description: 注册两个微服务，实现客户端的负载均衡
+ * @description: 注册两个微服务，实现客户端的负载均衡。
  * @authhor: ChenChangxi
  * @create: 2019-11-07 16:59
  **/

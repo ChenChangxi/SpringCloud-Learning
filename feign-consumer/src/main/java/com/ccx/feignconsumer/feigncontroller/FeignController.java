@@ -16,23 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 
 @RestController
-public class FeignController {
+public class FeignController implements BaseController{
 
     @Autowired
     private FeignService feignService;
 
-    @RequestMapping("/feign")
+    @Override
     public String feign1() throws Exception{
-        return feignService.feign();
+        return feignService.feign()+"-fegin";
     }
 
-    @RequestMapping("/feign_param/{name}/{age}")
+    @Override
     public User feign2(@PathVariable("name") String name,
                        @PathVariable("age") Integer age) throws Exception{
         return feignService.feign("ChenChangxi",21);
     }
 
-    @RequestMapping("/feign_entity/{name}/{age}")
+    @Override
     public String feign3(@PathVariable("name") String name,
                          @PathVariable("age") Integer age) throws Exception{
         User user = new User();

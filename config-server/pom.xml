@@ -12,32 +12,36 @@
     <artifactId>config-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>config-server</name>
-    <description>Demo project for Spring Boot</description>
+    <description>这是SpringCloud的分布式配置中心，它承担着为各个微服务
+    提供配置文件的作用，每个微服务在启动的时候都会向它请求配置文件，接着它
+    会向远端git仓库请求配置文件，并存储在本地git仓库中，之后提供给具体的
+    某一个微服务应用</description>
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Brixton.SR5</spring-cloud.version>
     </properties>
     <dependencies>
+
+        <!--config-server的web模块，需要向远端git仓库发出请求-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-        </dependency>
+
+        <!--注册成为eureka的客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
+
+        <!--引入config-server模块-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
+
+        <!--引入消息总线，加上github的webhook和内网穿透，实现git push直接
+        更新本地配置文件的效果-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
@@ -46,6 +50,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

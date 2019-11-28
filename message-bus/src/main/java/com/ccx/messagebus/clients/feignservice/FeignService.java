@@ -1,4 +1,4 @@
-package com.ccx.feignconsumer.feignservice;
+package com.ccx.messagebus.clients.feignservice;
 
 import com.ccx.ribbonservice.fegincontroller.BaseController;
 import org.springframework.cloud.netflix.feign.FeignClient;

@@ -1,4 +1,4 @@
-package com.ccx.feignconsumer.feignservice;
+package com.ccx.messagebus.clients.feignservice;
 
 import com.ccx.ribbonservice.entity.User;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  **/
 
 @Component("feign-fall-back")
-public class FallBack implements FeignService{
+public class FallBack implements FeignService {
 
     @Override
     public String feign() throws Exception {

@@ -12,37 +12,76 @@
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>sleuth-monitor</name>
-    <description>Demo project for Spring Boot</description>
+    <description>这是SpringCloud的链路跟踪服务端，它会将所有对集群中
+    微服务的各个调用集中保存起来，一次调用可以分为对个请求，一个调用是一
+    个trace，一次请求是一个span，一个trace中包含多个span，这些信息的处
+    理有两种方法，第一种是通过http交给这个服务端保存，另一种是通过消息队列
+    来把信息交给服务端。那么最后还要通过mysql来进行持久化</description>
 
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Brixton.SR5</spring-cloud.version>
+        <com.ccx.version>0.0.1-SNAPSHOT</com.ccx.version>
     </properties>
 
     <dependencies>
+
+        <!--依赖其他项目的一些模块-->
         <dependency>
             <groupId>com.ccx</groupId>
             <artifactId>stream-driver</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <!--web模块-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-rxjava</artifactId>
-            <version>1.0.2.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-rabbitmq</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--服务发现-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+
+        <!--搭建zipkin-server，利用http来收集信息的依赖包，但是注意，当
+        用消息中间件来收集的时候由于spring-cloud-sleuth-zipkin-stream
+        已经包含了zipkin-server，所以要把这个依赖给去掉-->
+        <!--<dependency>-->
+            <!--<groupId>io.zipkin.java</groupId>-->
+            <!--<artifactId>zipkin-server</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-ui</artifactId>
+        </dependency>
+
+        <!--zipkin-server利用消息中间件来收集信息的依赖包-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin-stream</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+        </dependency>
+
+        <!--将消息中间件在内存中的消息持久化数据存储的依赖包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>3.8.0</version>
+        </dependency>
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

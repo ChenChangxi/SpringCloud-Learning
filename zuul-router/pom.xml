@@ -12,7 +12,12 @@
     <artifactId>zuul-router</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>zuul-router</name>
-    <description>Demo project for Spring Boot</description>
+    <description>这是SpringCloud的网关服务模块，也是边缘服务的一个模块，
+    它是我们整个微服务应用的"入口"。我们会手动的给它维护一张路由表，我们通过
+    利用通配符，甚至是Java的正则表达式来自定义一些路由规则，由它来进行转发到
+    微服务集群内部的某一个微服务上，当然，它和Nginx相比，它不能实现服务端负载
+    均衡，不过这个差距可以由Ribbon来弥补。它还有一个拦截器的功能，相当于Spring
+    MVC的inceptor，我们的路由规则也是由拦截器来实现的。</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -20,10 +25,26 @@
     </properties>
 
     <dependencies>
+
+        <!--web模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!--zuul模块-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zuul</artifactId>
+        </dependency>
+
+        <!--分布式配置中心模块-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+
+        <!--消息总线需要引入的模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -32,18 +53,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zuul</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka-server</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

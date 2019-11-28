@@ -1,0 +1,5 @@
+#这里注意，logback.xml会在application.yml之前加载
+#因此要把applicationName放在bootstrap.yml中
+spring:
+  application:
+    name: feign-consumer

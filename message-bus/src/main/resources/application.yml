@@ -1,13 +1,17 @@
 spring:
-  application:
-    name: rabbit-mq
+  #zipkin服务端的地址
+  zipkin:
+    base-url: http://localhost:1000
+  #rabbitmq的地址，它既不属于客户端，也不属于服务端，它是一个中间件
   rabbitmq:
     host: localhost
-    # 注意，5762是client登陆端口，15762是管理端口
+    #注意，5762是client登陆端口，15762是管理端口
     port: 5672
     username: ccx1016875161@126.com
     password: QTSS.a000
-
+  sleuth:
+    sampler:
+      percentage: 1
   cloud:
     stream:
       bindings:
@@ -25,6 +29,11 @@ spring:
       instance-count: 2
       #消费者实例的索引
       instance-index: 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://one:1111/eureka/,http://two:1112/eureka/
 
 server:
   port: 2341

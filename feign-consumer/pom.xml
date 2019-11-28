@@ -12,7 +12,10 @@
     <artifactId>fegin-consumer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>fegin-consumer</name>
-    <description>Demo project for Spring Boot</description>
+    <description>这是SpringCloud的声明式服务调用模块，它模仿了"客户端"
+    ，"服务器"的模式，也就是C/S模式，而传统的Ribbon是B/S模式。采用这种模式
+    可以更加优雅的进行服务调用，同时也能简化逻辑。它同时也集成了hystrix模块
+    同样能进行线程熔断和服务降级的配置。</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -20,23 +23,65 @@
     </properties>
 
     <dependencies>
+
+        <!--需要用到ribbon-service的一些依赖-->
         <dependency>
             <groupId>com.ccx</groupId>
             <artifactId>ribbon-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <!--web模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
-        </dependency>
+
+        <!--将该应用注册成为微服务-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
+
+        <!--引入feign模块-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+
+        <!--在项目的控制台里实现链路追踪，无论是日志还是zipkin都要有这个-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
+        <!--在项目中使用logback来进行链路追踪-->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>4.6</version>
+        </dependency>
+
+        <!--在项目中使用zipkin进行链路追踪，并使用http直接发送到zipkin服务端,
+        这里一定要注意，这个依赖不能与spring-cloud-sleuth-stream这个依赖同时
+        存在，否则要么消息输入不到中间件，要么启动的时候报错，也就是说要么你直接
+        把链路消息发给zipkin-server，要么发给rabbitmq消息中间件。-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-sleuth-zipkin</artifactId>-->
+        <!--</dependency>-->
+
+        <!--使用zipkin进行链路追踪，首先发送到rabbitmq中间件，然后服务端从消息
+        中间件来获取链路请求信息-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-stream</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
