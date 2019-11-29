@@ -20,8 +20,8 @@ spring:
     config:
       server:
         git:
-          username: ccx1016875161@126.com
-          password: QTSS.a000
+          username: XXXXX
+          password: XXXXX
 
           # 这里是用application-name来匹配仓库，不过功能不够强大
           # uri: https://github.com/ChenChangxi/{application}
