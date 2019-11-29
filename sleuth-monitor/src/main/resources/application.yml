@@ -14,8 +14,8 @@ spring:
     password: QTSS.a000
     continue-on-error: true
     initialize: true
-    jdbc-url: jdbc:mysql://localhost:3306/zipkin
-    driver-class-name:
+    url: jdbc:mysql://localhost:3306/zipkin
+    driver-class-name: com.mysql.jdbc.Driver
 
   cloud:
     stream:
@@ -24,32 +24,36 @@ spring:
         input:
           destination: sleuth
 
-#        input5:
-#          destination: great
-#        output5:
-#          destination: great1
-#
-#        input:
-#          destination: great
-#        output:
-#          destination: great1
-#
-#        #注意，input1是通道的名称，destination是exchange的名称
-#        #input接收的是对应destination的消息，同样，output也是把
-#        #消息发送给对应的destination，只有destination相同的input
-#        #output才能互相发送和接收信息，这里要特别注意，如果没有为
-#        #通道指定destination，那么通道的destination名称默认为是
-#        #自己定义的通道名称。
-#        input1:
-#          group: service
-#          destination: test
-#          consumer:
-#            #开启消息分区的功能
-#            partitioned: true
-#      #有多少消费者实例
-#      instance-count: 2
-#      #消费者实例的索引
-#      instance-index: 1
+        input5:
+          destination: great
+        output5:
+          destination: great1
+
+        input:
+          destination: great
+        output:
+          destination: great1
+
+        #注意，input1是通道的名称，destination是exchange的名称
+        #input接收的是对应destination的消息，同样，output也是把
+        #消息发送给对应的destination，只有destination相同的input
+        #output才能互相发送和接收信息，这里要特别注意，如果没有为
+        #通道指定destination，那么通道的destination名称默认为是
+        #自己定义的通道名称。
+        input1:
+          group: service
+          destination: test
+          consumer:
+            #开启消息分区的功能
+            partitioned: true
+      #有多少消费者实例
+      instance-count: 2
+      #消费者实例的索引
+      instance-index: 1
+
+zipkin:
+  storage:
+    type: mysql
 
 eureka:
   client:

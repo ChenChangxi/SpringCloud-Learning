@@ -1,0 +1,34 @@
+[2019-11-29 12:20:38.824 10.4.13.100 feign-consumer [31mWARN [0;39m [33m[0;39m,[32m[0;39m,[34m[0;39m [33mmain[0;39m [32morg.springframework.context.annotation.ConfigurationClassPostProcessor[0;39m Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+[2019-11-29 12:20:45.083 10.4.13.100 feign-consumer [31mWARN [0;39m [33m[0;39m,[32m[0;39m,[34m[0;39m [33mmain[0;39m [32mcom.netflix.config.sources.URLConfigurationSource[0;39m No URLs will be polled as dynamic configuration sources.
+[2019-11-29 12:20:45.089 10.4.13.100 feign-consumer [31mWARN [0;39m [33m[0;39m,[32m[0;39m,[34m[0;39m [33mmain[0;39m [32mcom.netflix.config.sources.URLConfigurationSource[0;39m No URLs will be polled as dynamic configuration sources.
+[2019-11-29 13:46:17.687 10.4.13.100 feign-consumer [31mWARN [0;39m [33m[0;39m,[32m[0;39m,[34m[0;39m [33mThread-6[0;39m [32mcom.netflix.discovery.DiscoveryClient[0;39m Saw local status change event StatusChangeEvent [timestamp=1575006377686, current=DOWN, previous=UP]
+[2019-11-29 13:46:17.960 10.4.13.100 feign-consumer [31mWARN [0;39m [33m[0;39m,[32m[0;39m,[34m[0;39m [33mThread-6[0;39m [32morg.springframework.context.annotation.AnnotationConfigApplicationContext[0;39m Exception thrown from ApplicationListener handling ContextClosedEvent
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'org.springframework.cloud.netflix.eureka.EurekaDiscoveryClientConfiguration': Singleton bean creation not allowed while the singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1054)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:254)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:224)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:144)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:106)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:166)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:381)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:387)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:335)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:967)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:934)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:70)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:262)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:972)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:979)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:982)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:901)
+[2019-11-29 13:49:17.718 172.20.10.3 feign-consumer [31mWARN [0;39m [33m[0;39m,[32m[0;39m,[34m[0;39m [33mmain[0;39m [32morg.springframework.context.annotation.ConfigurationClassPostProcessor[0;39m Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+[2019-11-29 13:49:26.499 172.20.10.3 feign-consumer [31mWARN [0;39m [33m[0;39m,[32m[0;39m,[34m[0;39m [33mmain[0;39m [32mcom.netflix.config.sources.URLConfigurationSource[0;39m No URLs will be polled as dynamic configuration sources.
+[2019-11-29 13:49:26.508 172.20.10.3 feign-consumer [31mWARN [0;39m [33m[0;39m,[32m[0;39m,[34m[0;39m [33mmain[0;39m [32mcom.netflix.config.sources.URLConfigurationSource[0;39m No URLs will be polled as dynamic configuration sources.
